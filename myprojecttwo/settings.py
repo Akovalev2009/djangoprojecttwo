@@ -1,15 +1,12 @@
 import os
 from pathlib import Path
 
-# Построение путей внутри проекта: BASE_DIR указывает на корневой каталог проекта.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Безопасность
 SECRET_KEY = 'your-secret-key'
 DEBUG = True
 ALLOWED_HOSTS = []
 
-# Приложения Django
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -19,7 +16,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'myapp',  # Ваше приложение
 ]
 
 MIDDLEWARE = [
@@ -30,10 +26,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
-ROOT_URLCONF = 'myprojecttwo.urls'
+ROOT_URLCONF = 'your_project.urls'
 
 TEMPLATES = [
     {
@@ -51,9 +46,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myprojecttwo.wsgi.application'
+WSGI_APPLICATION = 'your_project.wsgi.application'
 
-# База данных
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -61,30 +55,42 @@ DATABASES = {
     }
 }
 
-# Валюта и временная зона
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
-# Статические файлы (CSS, JavaScript, изображения)
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'myapp/static',
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
-# Конфигурация сайтов
+LANGUAGE_CODE = 'ru-ru'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
 SITE_ID = 1
 
-# Конфигурация авторизации
-LOGIN_URL = '/admin/login/'
-
-# Настройки электронной почты (для отправки почты, например, при восстановлении пароля)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.example.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@example.com'
-EMAIL_HOST_PASSWORD = 'your-email-password'
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
