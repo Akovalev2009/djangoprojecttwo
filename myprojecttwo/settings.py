@@ -1,15 +1,15 @@
 INSTALLED_APPS = [
-    ...
+    
     'django.contrib.sites',
     'django.contrib.flatpages',
     'myapp',
-    ...
+   
 ]
 
 MIDDLEWARE = [
-    ...
+    
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    ...
+    
 ]
 
 SITE_ID = 1
